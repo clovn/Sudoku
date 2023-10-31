@@ -26,4 +26,8 @@ public class View {
 			System.out.println("К сожалению, вы проиграли.");
 		}
 	}
+
+	public static void refresh(){
+		System.out.print("\033\143");
+	}
 }
