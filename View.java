@@ -19,4 +19,11 @@ public class View {
 		System.out.println("-Ввести цифру которую, хотите вставить.");
 	}
 
+	public static void printGameResult(boolean win) {
+		if (win) {
+			System.out.println("Поздравляю! Ты выиграл и смог решить эту непростую задачу!");
+		} else {
+			System.out.println("К сожалению, вы проиграли.");
+		}
+	}
 }
