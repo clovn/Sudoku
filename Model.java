@@ -6,7 +6,8 @@ public class Model {
 			int chosen = View.printMainMenu();
 			switch (chosen) {
 				case 1:
-					// .Start new game
+					Game game = new Game();
+					game.start();
 					break;
 				case 2:
 					View.printHelpPage();
