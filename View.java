@@ -12,7 +12,11 @@ public class View {
                       "3. Выйти\n";
 		refresh(text);
 
-		return sc.nextInt();
+		try {
+			return sc.nextInt();
+		} catch(Exception e) {
+			return -1;
+		}
 	}
 
 	public static void printHelpPage() {
