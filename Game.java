@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Game {
 	private int[][] gameField = new int[9][9];
@@ -34,7 +35,7 @@ public class Game {
     private void generateGameField(){
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
-            	if(Math.random() < 0.9){
+            	if(Math.random() < 0.95){
                 	gameField[i][j] = (i*3 + i/3 + j) % 9 + 1;
             	}
             }
@@ -49,7 +50,7 @@ public class Game {
     	}
 
     	for(int i = 0; i < 9; i++){
-    		if(gameField[guess[1]][i] == guess[2] || gameField[i][guess[0]] == guess[2] || gameField[guess[0]/3*3 + i/3][guess[1]/3*3 + i%3] == guess[2]) {
+    		if(gameField[guess[1]][i] == guess[2] || gameField[i][guess[0]] == guess[2] || gameField[guess[1]/3*3 + i%3][guess[0]/3*3 + i/3] == guess[2]) {
     			return false;
     		}
     	}

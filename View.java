@@ -36,11 +36,15 @@ public class View {
 	}
 
 	public static void printGameResult(boolean win) {
+		Scanner sc = new Scanner(System.in);
+
 		if (win) {
-			System.out.println("Поздравляю! Ты выиграл и смог решить эту непростую задачу!");
+			refresh("Поздравляю! Ты выиграл и смог решить эту непростую задачу!\n");
 		} else {
-			System.out.println("К сожалению, вы проиграли.");
+			refresh("К сожалению, вы проиграли.\n");
 		}
+		System.out.println("press enter to continue...");
+		sc.nextLine();
 	}
 
 	public static void refresh(String text){
