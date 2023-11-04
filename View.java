@@ -52,7 +52,7 @@ public class View {
 		System.out.print(text);
 	}
 
-	public static int[] printGameField(int[][] field) {
+	public static int[] printField(int[][] field) {
 		String text = "    1 2 3 4 5 6 7 8 9 \n  ---------------------\n";
 		Scanner sc = new Scanner(System.in);
 		int i = 1;
