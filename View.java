@@ -72,6 +72,10 @@ public class View {
 		refresh(text);
 		System.out.print("Введите ход: ");
 
-		return Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
+		try{
+			return Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

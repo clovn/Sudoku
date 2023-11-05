@@ -16,7 +16,7 @@ public class Game {
     	while(!checkEndCondition()){
     		int[] guess = View.printField(field);
 
-    		if(!validate(guess)){
+    		if( guess == null || !validate(guess)){
     			continue;
     		}
 
@@ -37,7 +37,7 @@ public class Game {
     private void generateField(){
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
-            	if(Math.random() < 0.95){
+            	if(Math.random() < 0.6){
                 	field[i][j] = (i*3 + i/3 + j) % 9 + 1;
             	}
             }
@@ -139,6 +139,16 @@ public class Game {
 	}
 
 	private void swapColumsArea() {
+		int area1 = RND.nextInt(3);
+		int area2 = RND.nextInt(3);
+		int[] buff = new int[9];
 
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 9; j++){
+				buff[j] = field[j][area1*3 + i];
+				field[j][area1*3 + i] = field[j][area2*3 + i];
+				field[j][area2*3 + i] = buff[j];
+			}
+		}
 	}
 }
