@@ -53,21 +53,26 @@ public class View {
 	}
 
 	public static int[] printField(int[][] field) {
-		String text = "    1 2 3 4 5 6 7 8 9 \n  ---------------------\n";
+		String text = "    1 2 3   4 5 6   7 8 9 \n  -------------------------\n";
 		Scanner sc = new Scanner(System.in);
 		int i = 1;
 
 		for(int[] line : field) {
 			text += i + " | ";
-			i++;
-			for(int dg : line) {
-				if(dg == 0) text += "_ ";
-				else text += dg + " ";
-			}
-			text += "|\n";
-		}
 
-		text += "  ---------------------\n";
+			for(int j = 0; j < 9; j++) {
+				text += line[j] != 0 ? line[j] + " " : "_ ";
+				if(j % 3 == 2) text += "| ";
+
+			}
+
+			text += "\n";
+
+			if(i == 9) text += "  -------------------------\n";
+			else if((i - 1) % 3 == 2) text += "  |-------|-------|-------|\n";
+
+			i++;
+		}
 
 		refresh(text);
 		System.out.print("Введите ход: ");
