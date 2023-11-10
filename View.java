@@ -83,4 +83,12 @@ public class View {
 			return null;
 		}
 	}
+
+	public static void printException(String e) {
+		Scanner sc = new Scanner(System.in);
+		String line;
+		line = "ERROR: " + e + "\n" + "press enter to continue...\n";
+		refresh(line);
+		sc.nextLine();
+	}
 }
