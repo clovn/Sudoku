@@ -5,7 +5,8 @@ import java.util.Random;
 public class Game {
 	private int[][] field = new int[9][9];
 	private final Random RND = new Random();
-	private byte difficulty;
+	private static double difficulty;
+
     public Game(){
     	generateField();
     }
@@ -30,6 +31,20 @@ public class Game {
         field[guess[1]][guess[0]] = guess[2];
     }
 
+    public static void setDifficulty(int diff){	
+    	switch(diff){
+    		case 1:
+    			difficulty = 0.9;
+    			break;
+    		case 2:
+    			difficulty = 0.7;
+    			break;
+    		case 3:
+    			difficulty = 0.5;
+    			break;
+    	}
+    }
+
     private int getDigit(int[] guess){
     	return field[guess[1]][guess[0]];
     }
@@ -37,7 +52,7 @@ public class Game {
     private void generateField(){
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
-            	if(Math.random() < 0.6){
+            	if(Math.random() < difficulty){
                 	field[i][j] = (i*3 + i/3 + j) % 9 + 1;
             	}
             }

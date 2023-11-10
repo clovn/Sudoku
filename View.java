@@ -36,14 +36,14 @@ public class View {
 		sc.nextLine();
 	}
 
-	public static byte printSettingsPage() {
+	public static int printSettingsPage() {
 		Scanner sc = new Scanner(System.in);
 		String text;
 		text = "1. Выбрать сложность игры.\n";
 		refresh(text);
-		byte chosen = 0;
+		int chosen = 0;
 		try {
-			chosen = sc.nextByte();
+			chosen = sc.nextInt();
 		} catch (Exception e) {
 			printException(e.getMessage());
 			printSettingsPage();
@@ -52,9 +52,9 @@ public class View {
 		return chosen;
 	}
 
-	public static byte Difficulties() {
+	public static int Difficulties() {
 		Scanner sc = new Scanner(System.in);
-		byte difficulty;
+		int difficulty;
 		String text = "1. Легко\n" +
 					"2. Средне\n" +
 					"3. Сложно\n";
