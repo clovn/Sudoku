@@ -86,6 +86,7 @@ public class View {
 	public static int[] printField(int[][] field) {
 		String text = "    1 2 3   4 5 6   7 8 9 \n  -------------------------\n";
 		Scanner sc = new Scanner(System.in);
+		int[] guess = new int[3];
 		int i = 1;
 
 		for(int[] line : field) {
@@ -109,10 +110,16 @@ public class View {
 		System.out.print("Введите ход: ");
 
 		try{
-			return Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
+			guess = Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
 		} catch (Exception e) {
 			return null;
 		}
+
+		for(int n : guess){
+			if(n < 1 || n > 9) return null;
+		}
+
+		return guess;
 	}
 
 	public static void printException(String e) {
