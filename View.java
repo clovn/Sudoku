@@ -112,11 +112,14 @@ public class View {
 		try{
 			guess = Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
 		} catch (Exception e) {
+			printException("Wrong input");
 			return null;
 		}
 
 		for(int n : guess){
-			if(n < 1 || n > 9) return null;
+			if(n < 1 || n > 9) {
+				printException("использовать можно только цифры");
+				return null;
 		}
 
 		return guess;
