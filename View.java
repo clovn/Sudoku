@@ -9,7 +9,8 @@ public class View {
 		String text = "===== Главное меню =====\n" +
                       "1. Играть\n" +
                       "2. Помощь\n" +
-                      "3. Выйти\n";
+					  "3. Настройки\n" +
+                      "4. Выйти\n";
 		refresh(text);
 
 		try {
@@ -35,6 +36,36 @@ public class View {
 		sc.nextLine();
 	}
 
+	public static byte printSettingsPage() {
+		Scanner sc = new Scanner(System.in);
+		String text;
+		text = "1. Выбрать сложность игры.\n";
+		refresh(text);
+		byte chosen = 0;
+		try {
+			chosen = sc.nextByte();
+		} catch (Exception e) {
+			printException(e.getMessage());
+			printSettingsPage();
+		}
+
+		return chosen;
+	}
+
+	public static byte Difficulties() {
+		Scanner sc = new Scanner(System.in);
+		byte difficulty;
+		String text = "1. Легко\n" +
+					"2. Средне\n" +
+					"3. Сложно\n";
+		
+		do {
+			refresh(text);
+			difficulty = sc.nextByte();
+		} while(!(1<=difficulty && difficulty <= 3));
+		
+		return difficulty;
+	}
 	public static void printGameResult(boolean win) {
 		Scanner sc = new Scanner(System.in);
 

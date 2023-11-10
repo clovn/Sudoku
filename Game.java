@@ -5,7 +5,7 @@ import java.util.Random;
 public class Game {
 	private int[][] field = new int[9][9];
 	private final Random RND = new Random();
-
+	private byte difficulty;
     public Game(){
     	generateField();
     }
