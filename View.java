@@ -5,12 +5,19 @@ public class View {
 	
 	public static int printMainMenu() {
 		Scanner sc = new Scanner(System.in);
+
 		String text = "===== Главное меню =====\n" +
                       "1. Играть\n" +
                       "2. Помощь\n" +
-                      "3. Выйти\n";
+					  "3. Настройки\n" +
+                      "4. Выйти\n";
 		refresh(text);
-		return sc.nextInt();
+
+		try {
+			return sc.nextInt();
+		} catch(Exception e) {
+			return -1;
+		}
 	}
 
 	public static void printHelpPage() {
@@ -21,21 +28,54 @@ public class View {
                       "чтобы в каждой строке, в каждом столбце и в каждом малом квадрате 3*3\n" +
                       "каждая цифра встречалась бы только один раз\n" +
                       "===== Управление =====\n" +
-                      "-Чтобы поставить цифру, вам нужно выбрать сектор от 1 до 9.\n" +
-                      "-Ввести координаты места через пробел.(1 1 или 2 3 или 3 1 и т.д.).\n" +
+                      "-Чтобы поставить цифру, вам нужно ввести координаты (x, y) места через пробел(1 1 или 4 5 или 9 9 и т.д.)" +
                       "-Ввести цифру которую, хотите вставить.\n" +
-                      "(чтобы вернуться назад введите любую цифру)\n";
+                      "(чтобы вернуться назад нажмите Enter)\n";
 		refresh(text);
 
 		sc.nextLine();
 	}
 
-	public static void printGameResult(boolean win) {
-		if (win) {
-			System.out.println("Поздравляю! Ты выиграл и смог решить эту непростую задачу!");
-		} else {
-			System.out.println("К сожалению, вы проиграли.");
+	public static byte printSettingsPage() {
+		Scanner sc = new Scanner(System.in);
+		String text;
+		text = "1. Выбрать сложность игры.\n";
+		refresh(text);
+		byte chosen = 0;
+		try {
+			chosen = sc.nextByte();
+		} catch (Exception e) {
+			printException(e.getMessage());
+			printSettingsPage();
 		}
+
+		return chosen;
+	}
+
+	public static byte Difficulties() {
+		Scanner sc = new Scanner(System.in);
+		byte difficulty;
+		String text = "1. Легко\n" +
+					"2. Средне\n" +
+					"3. Сложно\n";
+		
+		do {
+			refresh(text);
+			difficulty = sc.nextByte();
+		} while(!(1<=difficulty && difficulty <= 3));
+		
+		return difficulty;
+	}
+	public static void printGameResult(boolean win) {
+		Scanner sc = new Scanner(System.in);
+
+		if (win) {
+			refresh("Поздравляю! Ты выиграл и смог решить эту непростую задачу!\n");
+		} else {
+			refresh("К сожалению, вы проиграли.\n");
+		}
+		System.out.println("press enter to continue...");
+		sc.nextLine();
 	}
 
 	public static void refresh(String text){
@@ -43,23 +83,43 @@ public class View {
 		System.out.print(text);
 	}
 
-	public static int[] printGameField(int[][] field) {
-		String text = "---------------------\n";
+	public static int[] printField(int[][] field) {
+		String text = "    1 2 3   4 5 6   7 8 9 \n  -------------------------\n";
 		Scanner sc = new Scanner(System.in);
+		int i = 1;
 
 		for(int[] line : field) {
-			text += "| ";
-			for(int dg : line) {
-				text += dg + " ";
-			}
-			text += "|\n";
-		}
+			text += i + " | ";
 
-		text += "---------------------\n";
+			for(int j = 0; j < 9; j++) {
+				text += line[j] != 0 ? line[j] + " " : "_ ";
+				if(j % 3 == 2) text += "| ";
+
+			}
+
+			text += "\n";
+
+			if(i == 9) text += "  -------------------------\n";
+			else if((i - 1) % 3 == 2) text += "  |-------|-------|-------|\n";
+
+			i++;
+		}
 
 		refresh(text);
 		System.out.print("Введите ход: ");
 
-		return Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+		try{
+			return Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n-1).toArray();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public static void printException(String e) {
+		Scanner sc = new Scanner(System.in);
+		String line;
+		line = "ERROR: " + e + "\n" + "press enter to continue...\n";
+		refresh(line);
+		sc.nextLine();
 	}
 }
