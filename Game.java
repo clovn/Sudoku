@@ -1,3 +1,5 @@
+
+import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
@@ -6,14 +8,14 @@ public class Game {
 	private int[][] field = new int[9][9];
 	private final Random RND = new Random();
 	private static double difficulty;
-
+	private long t1,t2;
     public Game(){
     	generateField();
     }
 
     public void start() {
     	boolean isLose = false;
-
+		t1 = System.nanoTime();
     	while(!checkEndCondition()){
     		int[] guess = View.printField(field);
 
@@ -23,8 +25,11 @@ public class Game {
 
     		setDigit(guess);
     	}
-
-    	View.printGameResult(!isLose);
+		Scanner sc = new Scanner(System.in);
+		sc.nextLine();
+		t2 = System.nanoTime();
+		double time = (double) ((t2-t1)/1_000_000_000);
+    	View.printGameResult(!isLose,time);
     }
 
     private void setDigit(int[] guess){
