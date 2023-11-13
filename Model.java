@@ -13,14 +13,7 @@ public class Model {
 					View.printHelpPage();
 					break;
 				case 3:
-					switch (View.printSettingsPage()) {
-						case 1:
-							Game.setDifficulty(View.Difficulties());
-							break;
-						default:
-							View.refresh("Настройки не выбраны");
-							break;
-					}
+					options();
 					break;
 				case 4:
 					isClose = true;
@@ -32,5 +25,16 @@ public class Model {
 		}
 		
 
+	}
+
+	public static void options(){
+		switch (View.printSettingsPage()) {
+			case 1:
+				Game.setDifficulty(View.Difficulties());
+				break;
+			default:
+				View.refresh("Настройки не выбраны");
+				break;
+		}
 	}
 }
