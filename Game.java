@@ -7,7 +7,7 @@ import java.util.Random;
 public class Game {
 	private int[][] field = new int[9][9];
 	private final Random RND = new Random();
-	private static double difficulty;
+	private static double difficulty = 0.9;
 	private long t1,t2;
     public Game(){
     	generateField();
@@ -19,14 +19,12 @@ public class Game {
     	while(!checkEndCondition()){
     		int[] guess = View.printField(field);
 
-    		if( guess == null || !validate(guess)){
+    		if(guess == null || !validate(guess)){
     			continue;
     		}
-
+    		System.out.println("23");
     		setDigit(guess);
     	}
-		Scanner sc = new Scanner(System.in);
-		sc.nextLine();
 		t2 = System.nanoTime();
 		double time = (double) ((t2-t1)/1_000_000_000);
     	View.printGameResult(!isLose,time);
@@ -64,7 +62,7 @@ public class Game {
         }
 
         for(int i = 0; i < 100; i++){
-        	switch(RND.nextInt(4)){
+        	switch(RND.nextInt(5)){
         		case 0:
         			transposition();
         			break;
@@ -76,6 +74,9 @@ public class Game {
         			break;
         		case 3:
         			swapRowsArea();
+        			break;
+        		case 4:
+        			swapColumsArea();
         			break;
         	}
         }

@@ -112,8 +112,9 @@ public class View {
 			i++;
 		}
 
+		text += "Введите ход: ";
+
 		refresh(text);
-		System.out.print("Введите ход: ");
 
 		try {
 			guess = Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).map(n -> n - 1).toArray();
@@ -122,8 +123,9 @@ public class View {
 			return null;
 		}
 
+
 		for (int n : guess) {
-			if (n < 1 || n > 9) {
+			if (n < 0 || n > 8) {
 				printException("использовать можно только цифры");
 				return null;
 			}
@@ -136,7 +138,7 @@ public class View {
 	public static void printException(String e) {
 		Scanner sc = new Scanner(System.in);
 		String line;
-		line = "ERROR: " + e + "\n" + "press enter to continue...\n";
+		line = "ERROR: " + e + "\n" + "press enter to continue...";
 		refresh(line);
 		sc.nextLine();
 	}
