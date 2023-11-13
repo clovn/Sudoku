@@ -75,7 +75,7 @@ public class View {
 		} else {
 			refresh("К сожалению, вы проиграли.\n");
 		}
-		if (time > 60) {
+		if (time < 60) {
 			System.out.println("Вы закончили игру за: " + time + " секунд.");
 		} else {
 			System.out.println("Вы закончили игру за: " + time/60.0 + " минут.");

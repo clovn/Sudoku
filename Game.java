@@ -7,7 +7,7 @@ import java.util.Random;
 public class Game {
 	private int[][] field = new int[9][9];
 	private final Random RND = new Random();
-	private static double difficulty = 0.9;
+	private static double difficulty = 0.95;
 	private long t1,t2;
     public Game(){
     	generateField();
